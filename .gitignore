@@ -1,0 +1,8 @@
+# pyenv
+python_venv/
+
+# executable files
+bin/
+
+# output files (solutions)
+output/
