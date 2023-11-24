@@ -86,6 +86,10 @@ int *best_order;
 int best_score = INT_MAX; // how many intersections in the best order
 
 void go(int i, int score) {
+	// fast prunning
+	if (score >= best_score)
+		return;
+
 	if (i < 0) {
 		if (score < best_score) {
 			best_score = score;
