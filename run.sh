@@ -9,12 +9,17 @@ mkdir -p output # create output directory if not exists
 rm -rf output/$test_set # remove existing outputs if they exist
 mkdir -p output/$test_set # create output directory if not exists
 
+function run_test_case {
+	test_file=$1
+  echo "Running case $test_set/$test_file"
+	input_file=cases/$test_set/$test_file.gr
+	solution_file=output/$test_set/$test_file.sol
+	./bin/$solution < $input_file > $solution_file
+}
+
 for test_file in cases/$test_set/*;
 do
 	test_file=$(basename ${test_file}) # get only file name from full file path
 	test_file=${test_file%.*} # remove extension from file name
-	echo "Case $test_set/$test_file:"
-	input_file=cases/$test_set/$test_file.gr
-	solution_file=output/$test_set/$test_file.sol
-	./bin/$solution < $input_file > $solution_file
+	run_test_case $test_file
 done
